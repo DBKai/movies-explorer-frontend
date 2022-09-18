@@ -1,5 +1,5 @@
 import './AboutMe.css';
-import derick from '../../images/derick-mckinney-kfN-BBbWTWo-unsplash.jpg';
+import student from '../../images/student.jpg';
 
 function AboutMe() {
   return (
@@ -14,7 +14,7 @@ function AboutMe() {
           </div>          
           <p className='aboutme__github'>github.com/DBKai</p>      
         </div>
-        <img className='aboutme__photo' src={derick} alt='Фото студента'></img>
+        <img className='aboutme__photo' src={student} alt='Фото студента'></img>
       </div>
     </div>
   );
