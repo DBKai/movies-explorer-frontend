@@ -1,6 +1,11 @@
+@import './vendor/fonts/font.css';
+
 body {
   margin: 0;
   font-family: 'Inter', Arial, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
