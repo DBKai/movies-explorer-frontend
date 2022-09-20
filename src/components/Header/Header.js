@@ -1,13 +1,18 @@
 import './Header.css';
 
+import logo from '../../images/logo.svg';
+import Navigation from '../Navigation/Navigation';
+import { useLocation } from 'react-router-dom';
+
 function App() {
+  const location = useLocation();
+  const landingPage = location.pathname === '/';
+  const headerClassName = `header ${ landingPage && "header_dark" }`
+
   return (
-    <div className='header'>
-      <div className='header__logo'></div>
-      <div className='header__login'>        
-        <button className='header__link signup'>Регистрация</button>
-        <button to='/signin' className='header__link signin'>Войти</button>
-      </div>
+    <div className={ headerClassName }>      
+      <img src={logo} alt='Логотип movies explorer' className='header__logo' />
+      <Navigation />
     </div>
   );
 }
