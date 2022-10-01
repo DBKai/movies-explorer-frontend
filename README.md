@@ -4,9 +4,9 @@
 
 В данной части проекта реализована вёрстка и JSX.
 
-Домен: https://dkay.nomoredomains.sbs/
+Домен: https://movie.dkay.ru/
 
-IP-адрес: 51.250.102.122
+IP-адрес: 130.193.34.128
 
 Ссылка на макет https://disk.yandex.ru/d/oD38rFhZN6OZBw
 
