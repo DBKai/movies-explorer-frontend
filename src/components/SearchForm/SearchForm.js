@@ -7,20 +7,20 @@ function SearchForm() {
   }
 
   return (
-    <form className='searchform' onSubmit={handleSubmit}>
-      <div className='searchform__item-container'>
-        <input 
-          id='search'
-          name='search-field'
-          className='searchform__item'
-          placeholder='Фильм'/>
-        <button className='searchform__submit'>Найти</button>
-      </div>
-      <div className='shortmovies'>
-        <label>Короткометражки</label>
+    <section className='search'>
+      <form className='searchform' onSubmit={handleSubmit} noValidate>
+        <div className='searchform__container'>
+          <input
+            type='text'
+            id='input-search'
+            name='search-field'
+            className='searchform__item'
+            placeholder='Фильм'/>
+          <button className='searchform__submit' type='submit'>Найти</button>
+        </div>
         <FilterCheckbox />
-      </div>      
-    </form>
+      </form>
+    </section>    
   );
 }
 
