@@ -1,43 +1,38 @@
 import './App.css';
-import Header from '../Header/Header';
-import Promo from '../Promo/Promo';
-import NavTab from '../NavTab/NavTab';
-import AboutProject from '../AboutProject/AboutProject';
-import Techs from '../Techs/Techs';
-import AboutMe from '../AboutMe/AboutMe';
-import Portfolio from '../Portfolio/Portfolio';
-import Footer from '../Footer/Footer';
-import { Routes, Route } from 'react-router-dom';
-import SearchForm from '../SearchForm/SearchForm';
+import { Routes, Route, useNavigate } from 'react-router-dom';
+import Movies from '../Movies/Movies';
+import SavedMovies from '../SavedMovies/SavedMovies';
+import Profile from '../Profile/Profile';
+import Register from '../Register/Register';
+import Login from '../Login/Login';
+import NotFound from '../NotFound/NotFound';
+import Main from '../Main/Main';
+import { useState } from 'react';
+import CurrentUserContext from '../../contexts/CurrentUserContext';
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
+  function onLogout() {
+    setIsLoggedIn(false);
+    navigate('/');
+  }
+  function onLogin() {
+    setIsLoggedIn(true);
+    navigate('/movies');
+  }
   return (
-    <>
-      <Header />
+    <CurrentUserContext.Provider value={isLoggedIn}>      
       <Routes>
-        <Route 
-          path='/' 
-          element={
-            <>              
-              <Promo /> 
-              <NavTab />
-              <AboutProject />
-              <Techs />
-              <AboutMe />
-              <Portfolio />
-              <Footer />
-            </>
-          }
-        />
-        <Route
-          path='/movies'
-          element={
-            <SearchForm />
-          }
-        />
+        <Route path='/' element={ <Main /> } />
+        <Route path='/movies' element={ <Movies /> } />
+        <Route path='/saved-movies' element={ <SavedMovies /> } />
+        <Route path='/profile' element={ <Profile onLogout={onLogout} /> } />
+        <Route path='/signup' element={ <Register /> } />
+        <Route path='/signin' element={ <Login onLogin={onLogin}/> } />
+        <Route path='*' element={ <NotFound /> } />
       </Routes>
-
-    </>
+    </CurrentUserContext.Provider>
   );
 }
 
