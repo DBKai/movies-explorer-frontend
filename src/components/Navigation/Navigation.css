@@ -145,6 +145,10 @@
   .navigation__mobile-item {
     display: inline;
   }
+
+  .navigation__account {
+    color: black;
+  }
 }
 
 @media screen and (max-width: 520px) {
