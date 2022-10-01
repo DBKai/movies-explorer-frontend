@@ -1,10 +1,10 @@
 .header {
-  max-width: calc(1280px - 140px);
-  min-width: 320px;
-  margin: 0 auto;
   padding: 18px 70px;
   background-color: white;
   display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  box-sizing: border-box;
 }
 
 .header_dark {
@@ -13,6 +13,90 @@
 
 .header__logo {
   width: 38px;
+}
+
+.header__link-logo {
   height: 38px;
   margin: 0 44px 0 0;
+  text-decoration: none;
+}
+
+.header__login {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header__link {
+  border: 0;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.header__link-signup {
+  margin: 0 30px 0 0;
+  color: white;
+  background-color: transparent;
+}
+
+.header__link-signup:hover {
+  opacity: .7;
+}
+
+.header__link-signin {
+  padding: 8px 20px;
+  background-color: #2be080;
+  color: black;
+  border-radius: 3px;
+}
+
+.header__link-signin:hover {
+  opacity: .8;
+}
+
+@media screen and (max-width: 888px) {
+  .header {
+    padding: 18px 30px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header__burger-menu {
+    width: 38px;
+    height: 38px;
+    background-image: url(../../images/burger-menu.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 44px;
+    cursor: pointer;
+  }
+
+  .header__burger-menu-white {
+    background-image: url(../../images/burger-menu-white.svg);
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .header {
+    padding: 18px 14px;
+  }
+
+  .header__link {
+    font-size: 10px;
+  }
+
+  .header__link-signup {
+    margin-right: 14px;
+  }
+
+  .header__link-signin {
+    padding: 5px 12px;
+  }
+
+  .header__burger-menu {
+    background-size: 38px;
+  }
 }
