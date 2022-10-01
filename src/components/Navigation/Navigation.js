@@ -5,6 +5,9 @@ function Navigation({isOpen, onClose, mainPage}) {
     const activeNavLinkClassName = ({isActive}) => {
       return `navigation__item${mainPage ? ' navigation__item-white' : ''}${isActive ? ' navigation__item_active' : ''}`;
     };
+    const activeMainNavLinkClassName = ({isActive}) => {
+      return `navigation__item${mainPage ? ' navigation__item-white' : ''}${isActive ? ' navigation__item_active' : ''} navigation__mobile-item`;
+    };
     return (
     <>
       <div className={`navigation header__navigation${isOpen ? ' navigation_opened' : ''}`}>
@@ -13,8 +16,8 @@ function Navigation({isOpen, onClose, mainPage}) {
             <button className='navigation__menu-close' onClick={onClose}/>
             <nav className='navigation__links'>
               <NavLink 
-                to='/' 
-                className='navigation__item navigation__mobile-item'>Главная</NavLink>
+                to='/' end
+                className={activeMainNavLinkClassName}>Главная</NavLink>
               <NavLink 
                 to='/movies'
                 className={activeNavLinkClassName}>Фильмы</NavLink>
