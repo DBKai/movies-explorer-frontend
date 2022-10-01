@@ -108,7 +108,9 @@
   }
 
   .aboutme__photo {
-    width: 100%;
+    width: 292px;
+    height: 352px;
+    align-self: center;
   }
 
   .aboutme__container {
