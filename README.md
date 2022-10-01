@@ -6,7 +6,7 @@
 
 Домен: https://movie.dkay.ru/
 
-IP-адрес: 62.84.121.191
+IP-адрес: 51.250.24.234
 
 Ссылка на макет https://disk.yandex.ru/d/oD38rFhZN6OZBw
 
