@@ -1,0 +1,104 @@
+.movies__card {
+  width: 360px;
+  height: 319px;
+  background: #fdfdfd;
+  box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.08);
+  border-radius: 6px;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.movies__heading {
+  padding: 18px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.movies__name {
+  width: 240px;
+  margin: 0;
+  font-family: 'Inter';
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 18px;
+}
+
+.movies__duration {
+  margin: 0;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+  color: #a0a0a0;
+}
+
+.movies__preview {
+  width: 100%;
+}
+
+.movies__save {
+  width: 100px;
+  height: 29px;
+  margin: 18px 0;
+  border: none;
+  border-radius: 30px;
+  align-self: center;
+  background-color: rgba(248, 248, 248, 1);
+  font-family: 'Inter';
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 11px;
+  cursor: pointer;
+}
+
+.movies__delete {
+  background-image: url(../../images/delete-movie.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.movies__save_active {
+  background-color: rgba(238, 52, 101, 1);
+  background-image: url(../../images/movie-added.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.movies__save:not(.movies__save_active):hover {
+  background-color: rgba(248, 248, 248, .8);
+}
+
+@media screen and (max-width: 768px) {
+  .movies__card {
+    width: 342px;
+    height: 309px;
+  }
+
+  .movies__heading {
+    padding: 18px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .movies__card {
+    width: 300px;
+    height: 271px;
+  }
+
+  .movies__heading {
+    padding: 14px;
+  }
+
+  .movies__name {
+    width: 200px;
+    font-size: 12px;
+  }
+
+  .movies__duration {
+    font-size: 10px;
+  }
+
+  .movies__save {
+    margin: 14px 0;
+  }
+}

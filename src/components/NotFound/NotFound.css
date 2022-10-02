@@ -1,0 +1,82 @@
+.notfound {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.notfound-container {
+  margin: -11px 0 0;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  z-index: 0;
+}
+
+.notfound__caption {
+  margin: 0;
+  font-weight: 400;
+  font-size: 140px;
+  line-height: 169px;
+  text-align: center;
+}
+
+.notfound__text {
+  margin: 0;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+}
+
+.notfound__back-button {
+  margin: 0 0 60px;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #2be080;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.notfound__back-button:hover {
+  opacity: 0.7;
+}
+
+@media screen and (max-width: 768px) {
+  .notfound__back-button {
+    margin-bottom: 221px;
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .notfound__caption {
+    font-size: 80px;
+    line-height: 120px;
+  }
+
+  .notfound__text {
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .notfound__back-button {
+    margin-bottom: 30px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+}

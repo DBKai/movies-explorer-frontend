@@ -1,0 +1,38 @@
+.navtab {
+  padding: 24px 0;
+  background-color: #f5f5f5;
+}
+
+.navtab__links {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  gap: 40px;
+}
+
+.navtab__link {
+  text-decoration: underline;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  color: black;
+  cursor: pointer;
+}
+
+.navtab__link:hover {
+  opacity: .7;
+}
+
+@media screen and (max-width: 320px) {
+  .navtab {
+    padding: 23px 0;
+    gap: 24px;
+  }
+
+  .navtab__link {
+    font-size: 11px;
+  }
+}
