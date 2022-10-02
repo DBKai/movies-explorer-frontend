@@ -12,8 +12,8 @@ function Portfolio() {
             target='_blank' 
             rel='noopener noreferrer'>
             <p className='portfolio__item-text'>Статичный сайт</p>
-          </a>
-          <p className='portfolio__item-arrow'>↗</p>
+            <p className='portfolio__item-arrow'>↗</p>
+          </a>          
         </ol>
         <ol className='portfolio__item'>
           <a 
@@ -22,8 +22,8 @@ function Portfolio() {
             target='_blank' 
             rel='noopener noreferrer'>
             <p className='portfolio__item-text'>Адаптивный сайт</p>
+            <p className='portfolio__item-arrow'>↗</p>
           </a>
-          <p className='portfolio__item-arrow'>↗</p>  
         </ol>
         <ol className='portfolio__item'>
           <a 
@@ -32,8 +32,8 @@ function Portfolio() {
             target='_blank' 
             rel='noopener noreferrer'>
             <p className='portfolio__item-text'>Одностраничное приложение</p>
+            <p className='portfolio__item-arrow'>↗</p>
           </a>
-          <p className='portfolio__item-arrow'>↗</p>  
         </ol>
       </ul>
     </section>
