@@ -1,9 +1,20 @@
+import { useState } from 'react';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import './SearchForm.css';
 
-function SearchForm() {
+function SearchForm({ onSearchMovies, isShortMovies, handleShortMoviesCheckbox }) {
+  const [value, setValue] = useState('');
+
   function handleSubmit(event) {
     event.preventDefault();
+    
+    onSearchMovies(value);
+  }
+
+  function handleChange(event) {
+    const input = event.target;
+
+    setValue(input.value);
   }
 
   return (
@@ -15,10 +26,14 @@ function SearchForm() {
             id='input-search'
             name='search-field'
             className='searchform__item'
-            placeholder='Фильм'/>
+            placeholder='Фильм'
+            onChange={handleChange} 
+            value={value}/>
           <button className='searchform__submit' type='submit'>Найти</button>
         </div>
-        <FilterCheckbox />
+        <FilterCheckbox 
+          isShortMovies={isShortMovies} 
+          handleShortMoviesCheckbox={handleShortMoviesCheckbox} />
       </form>
     </section>    
   );

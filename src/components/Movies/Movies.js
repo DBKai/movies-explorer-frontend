@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
-function Movies() {
+function Movies({movies, onSearchMovies, isShortMovies, handleShortMoviesCheckbox}) {
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -18,11 +18,14 @@ function Movies() {
   return (
     <>
       <Header />
-      <SearchForm />
+      <SearchForm 
+        onSearchMovies={onSearchMovies} 
+        isShortMovies={isShortMovies} 
+        handleShortMoviesCheckbox={handleShortMoviesCheckbox} />
       { isLoading && <Preloader /> }
-      { !isLoading && <MoviesCardList /> }
+      { !isLoading && <MoviesCardList movies={movies} /> }
       <Footer />
-    </>    
+    </>
   );
 }
 
