@@ -13,7 +13,10 @@ function Navigation({isOpen, onClose, mainPage}) {
       <div className={`navigation header__navigation${isOpen ? ' navigation_opened' : ''}`}>
         <div className='navigation__container'>
           <div className='navigation__link-container'>
-            <button className='navigation__menu-close' onClick={onClose}/>
+            <button 
+              className='navigation__menu-close' 
+              type='button'
+              onClick={onClose}/>
             <nav className='navigation__links'>
               <NavLink 
                 to='/' end
