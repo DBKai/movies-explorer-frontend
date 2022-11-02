@@ -1,5 +1,5 @@
 import './App.css';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
@@ -9,115 +9,102 @@ import NotFound from '../NotFound/NotFound';
 import Main from '../Main/Main';
 import { useEffect, useState } from 'react';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
-import { getAllMovies } from '../../utils/MoviesApi';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import { getUserInfo } from '../../utils/MainApi';
+import Preloader from '../Preloader/Preloader';
+import InfoTooltip from '../InfoTooltip/InfoTooltip';
+import { REQUEST_USERDATA_ERROR } from '../../constants/constants';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [movies, setMovies] = useState([]);
-  const [savedMovies, setSavedMovies] = useState([]);
-  const [searchQuery, setSearchQuery] = useState(''); //текст запроса
-  const [filteredMovies, setFilteredMovies] = useState([]); // найденные фильмы
-  const [isShortMovies, setIsShortMovies] = useState(false); // переключатель короткометражек
+  const [isLoading, setIsLoading] = useState(false);
+  const [infoMessage, setInfoMessage] = useState('');
+	const [isInfoTooltipOpened, setIsInfoTooltipOpened] = useState(false);
+  const [currentUser, setCurrentUser] = useState({
+    isLoggedIn: undefined,
+    name: '',
+    email: ''
+  });
 
-  const navigate = useNavigate();
-  
-  function onLogout() {
-    setIsLoggedIn(false);
-    navigate('/');
+  function closeInfoTooltip() {
+    setIsInfoTooltipOpened(false);
+    setInfoMessage('');
   }
 
-  function onLogin() {
-    setIsLoggedIn(true);
-    navigate('/movies');
-  }
-
-  function filterMovies() {
-    const newArray = movies.filter(v => v.nameRU === '');
-    setFilteredMovies(newArray);
-  }
-
-  // Нажатие кнопки "Найти"
-  function handleSearchMoviesSubmit(searchString) {
-    setSearchQuery(searchString);
-    // filterMovies(searchString);
-    localStorage.setItem('searchQuery', searchString);
-    // фильтр по nameRU nameEN
+  async function getCurrentUserInfo() {
+    try {
+      setIsLoading(true);
+      const user = await getUserInfo();
+      if (user.email) {
+        setCurrentUser({ 
+          isLoggedIn: true,
+          name: user.name,
+          email: user.email
+        });
+      }
+    } catch {
+      setInfoMessage(REQUEST_USERDATA_ERROR);
+      setIsInfoTooltipOpened(true);
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   useEffect(() => {
-    getAllMovies()
-      .then((items) => {
-        setMovies(items);
-      })
-      .catch((err) => {
-        console.log(`Error: ${err}`);
-    });
-  }, []);
-
-  useEffect(() => {
-    // Проверяем грузили ли уже фильмы, если нет, то надо загрузить.
-    const storageMovies = localStorage.getItem('movies');
-    const strorageIsShortMovies = localStorage.getItem('isShortMovies');
-    const storageSearchQuery = localStorage.getItem('searchQuery');
-    
-    if (storageMovies !== null && storageMovies !== 'undefined') {      
-      console.log('Фильмы загружены');
+    const jwt = localStorage.getItem('jwt');
+    if (jwt !== null && jwt !== undefined) {
+      getCurrentUserInfo();
+    } else {
+      setCurrentUser({
+        isLoggedIn: false,
+        name: '',
+        email: ''
+      });
     }
-
-    if (strorageIsShortMovies !== null && strorageIsShortMovies !== 'undefined') {      
-      console.log('Короткометражки: ' + strorageIsShortMovies);
-    }
-
-    if (storageSearchQuery !== null && storageSearchQuery !== 'undefined') {
-      
-      console.log(`Последний поисковый запрос: ${storageSearchQuery}`);
-    }
-  }, []);
-
-  function handleShortMoviesCheckbox() {
-    setIsShortMovies(!isShortMovies);
-  }
-
-  useEffect(() => {
-    localStorage.setItem('isShortMovies', isShortMovies);
-  }, [isShortMovies]);
+  }, [currentUser.isLoggedIn]);
 
   return (
-    <CurrentUserContext.Provider value={isLoggedIn}>      
-      <Routes>
-        <Route path='/' 
-          element={ 
-            <Main /> 
+    <CurrentUserContext.Provider value={currentUser}> 
+        <Routes>
+          <Route path='/' element={
+            <Main />
           } />
-        <Route path='/movies' 
-          element={ 
-            <Movies 
-              movies={movies} 
-              onSearchMovies={handleSearchMoviesSubmit}
-              isShortMovies={isShortMovies} 
-              handleShortMoviesCheckbox={handleShortMoviesCheckbox}/> 
-          } />
-        <Route path='/saved-movies' 
-          element={ 
-            <SavedMovies /> 
-          } />
-        <Route path='/profile' 
-          element={ 
-            <Profile onLogout={onLogout} /> 
-          } />        
-        <Route path='/signup' 
-          element={ 
-            <Register /> 
-          } />
-        <Route path='/signin' 
-          element={ 
-            <Login onLogin={onLogin}/> 
-          } />
-        <Route path='*' 
-          element={ 
-            <NotFound /> 
-          } />
-      </Routes>
+          <Route path='/signup' element={
+            <Register 
+              setCurrentUser={setCurrentUser} 
+              setIsLoading={setIsLoading} />
+            } />
+          <Route path='/signin' element={
+            <Login 
+              setCurrentUser={setCurrentUser} 
+              setIsLoading={setIsLoading} />
+            } />
+          <Route element={<ProtectedRoute />}>
+            <Route path='/movies' element={
+              <Movies
+                setInfoMessage={setInfoMessage}
+                setIsInfoTooltipOpened={setIsInfoTooltipOpened} />
+            } />
+            <Route path='/saved-movies' element={
+              <SavedMovies 
+                setInfoMessage={setInfoMessage}
+                setIsInfoTooltipOpened={setIsInfoTooltipOpened} />
+            } />
+            <Route path='/profile' element={
+              <Profile 
+                setCurrentUser={setCurrentUser} 
+                setIsLoading={setIsLoading}
+                setInfoMessage={setInfoMessage}
+                setIsInfoTooltipOpened={setIsInfoTooltipOpened} />
+            } />
+          </Route>
+          <Route path='*' element={<NotFound />} />
+        </Routes>
+        <InfoTooltip isOpen={isInfoTooltipOpened} onClose={closeInfoTooltip}>
+          {infoMessage}
+        </InfoTooltip>
+        {
+          isLoading && <Preloader />
+        }
     </CurrentUserContext.Provider>
   );
 }
