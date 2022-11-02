@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:3001'
+const BASE_URL = 'https://api.movie.dkay.ru'; // 'http://localhost:3001'
 
 async function login({ email, password }) {
   return await fetch(`${BASE_URL}/signin`, {
