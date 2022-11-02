@@ -1,14 +1,21 @@
 import './MoviesCard.css';
-import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { addToSavedMovies, deleteFromSavedMovies } from '../../utils/MainApi';
+import { SAVED_MOVIE_ADDING_ERROR, SAVED_MOVIE_DELETING_ERROR } from '../../constants/constants';
 
-function MoviesCard({ movie }) {
+function MoviesCard({ 
+  movie, 
+  setMovies, 
+  savedMovies,
+  setInfoMessage,
+  setIsInfoTooltipOpened }) {
   const location = useLocation();
-  const [isSaved, setIsSaved] = useState(false);
   const {nameRU, duration, image} = movie;
   const savedMoviesPage = location.pathname === '/saved-movies';
   const moviesPage = location.pathname === '/movies';
-  const imageUrl = image.url !== '' ? `https://api.nomoreparties.co${image.url}` : '';
+  const [isSaved, setIsSaved] = useState(false);
+
   const movieButtonClassName = 
     `movies__save${
       isSaved && moviesPage ? ' movies__save_active': ''}${
@@ -17,11 +24,55 @@ function MoviesCard({ movie }) {
   function getDuration(duration) {
     const hours = Math.floor(duration / 60);
     const minutes = duration % 60;
-    let result = '';
-    if (hours > 0) result += `${hours}ч`;
-    if (minutes > 0) result += ` ${minutes}м`;
-    return result;
+    return hours > 0 ? `${hours}ч ${minutes}м` : `${minutes}м`
   }
+  
+  const checkIsSaved = savedMovies.some(item => item.movieId === movie.movieId);
+
+  async function handleAddToSavedMovie() {
+    try {
+      if (movie.movieId) {
+        await addToSavedMovies(movie);
+        setIsSaved(true);
+      }
+    } catch (err) {
+      console.log(err);
+      setInfoMessage(SAVED_MOVIE_ADDING_ERROR);
+      setIsInfoTooltipOpened(true);
+    }
+  }
+
+  async function handleDeleteFromSavedMovie() {
+    try {
+      if (movie._id) {
+        const deletedMovie = await deleteFromSavedMovies(movie._id);
+        if (deletedMovie._id) {
+          const newSavedMovies = savedMovies.filter(c => c._id !== deletedMovie._id);
+          setMovies(newSavedMovies);
+        }
+      }
+    } catch (err) {
+      console.log(err);
+      setInfoMessage(SAVED_MOVIE_DELETING_ERROR);
+      setIsInfoTooltipOpened(true);
+    }
+  }
+
+  function handleMovieClick() {
+    if (savedMoviesPage) {
+      handleDeleteFromSavedMovie();
+    } else {
+      if (!isSaved) {
+        handleAddToSavedMovie();
+      }
+    }
+  }
+
+  useEffect(() => {
+    if (moviesPage) {
+      setIsSaved(checkIsSaved);
+    }
+  }, []);
 
   return (
     <li className='movies__card'>
@@ -36,15 +87,13 @@ function MoviesCard({ movie }) {
         rel='noopener noreferrer'>
         <img 
           className='movies__preview'
-          src={imageUrl}
+          src={image}
           alt={nameRU} />
       </a>
       <button 
         className={movieButtonClassName} 
         type='button'
-        onClick={() => {
-          setIsSaved(!isSaved);
-        }}>
+        onClick={handleMovieClick}>
           {!isSaved && moviesPage && 'Сохранить'}
         </button>
     </li>
