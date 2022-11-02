@@ -1,14 +1,14 @@
 import './FilterCheckbox.css';
 
-function FilterCheckbox({ isShortMovies, handleShortMoviesCheckbox }) {
-
+function FilterCheckbox({ isShortMovies, handleChangeShorts }) {
   return (
     <label className="filtercheckbox">
       <input
-        onChange={() => handleShortMoviesCheckbox()}
-        checked={isShortMovies}
-        type="checkbox"
         className="invisible-filtercheckbox"
+        type="checkbox"
+        name="isShortMovies"
+        onChange={handleChangeShorts}
+        checked={isShortMovies}
       />
       Короткометражки
       <span className="visible-filtercheckbox" />    
