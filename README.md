@@ -10,6 +10,8 @@ IP-адрес: 51.250.24.234
 
 Ссылка на макет https://disk.yandex.ru/d/oD38rFhZN6OZBw
 
+Ссылка на Pull Request 3: https://github.com/DBKai/movies-explorer-frontend/pull/2
+
 - Версия Node.js [16.15.0](https://nodejs.org/download/release/v16.15.0/)
 - Версия npm 8.5.5
 ## Запуск проекта
