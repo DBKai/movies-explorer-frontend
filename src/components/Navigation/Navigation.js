@@ -1,12 +1,14 @@
 import './Navigation.css';
 import { Link, NavLink } from 'react-router-dom';
 
-function Navigation({isOpen, onClose, mainPage}) {
+function Navigation({ isOpen, onClose, mainPage }) {
     const activeNavLinkClassName = ({isActive}) => {
-      return `navigation__item${mainPage ? ' navigation__item-white' : ''}${isActive ? ' navigation__item_active' : ''}`;
+      return `navigation__item${mainPage ? ' navigation__item-white' 
+        : ''}${isActive ? ' navigation__item_active' : ''}`;
     };
     const activeMainNavLinkClassName = ({isActive}) => {
-      return `navigation__item${mainPage ? ' navigation__item-white' : ''}${isActive ? ' navigation__item_active' : ''} navigation__mobile-item`;
+      return `navigation__item${mainPage ? ' navigation__item-white' 
+        : ''}${isActive ? ' navigation__item_active' : ''} navigation__mobile-item`;
     };
     return (
     <>
