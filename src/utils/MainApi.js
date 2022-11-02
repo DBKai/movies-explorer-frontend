@@ -77,7 +77,7 @@ async function addToSavedMovies(movie) {
       nameRU: movie.nameRU || '',
       nameEN: movie.nameEN || '',
       thumbnail: movie.image || '',
-      movieId: movie.id
+      movieId: movie.movieId
     })
   })
   .then(checkResponse);
