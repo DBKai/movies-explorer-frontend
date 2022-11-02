@@ -1,5 +1,4 @@
 import './Header.css';
-
 import logo from '../../images/logo.svg';
 import { Link, useLocation } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
@@ -12,15 +11,23 @@ function Header() {
   const headerClassName = `header${ mainPage ? ' header_dark' : '' }`
   const burgerMenuClassName = `header__burger-menu${ mainPage ? ' header__burger-menu-white' : '' }`;
   const [isMenuOpened, setIsMenuOpened] = useState(false);
-  const isLoggedIn = useContext(CurrentUserContext);
-  
+  const currentUser = useContext(CurrentUserContext);
+
+  function handlerBurgerMenu() {
+    if (isMenuOpened) {
+      setIsMenuOpened(false);
+    } else {
+      setIsMenuOpened(true)
+    }    
+  }
+
   return (
-    <section className={ headerClassName }>
+    <section className={headerClassName}>
       <Link to='/' className='header__link-logo'>
         <img src={logo} alt='Логотип movies explorer' className='header__logo' />
       </Link>
       {
-        !isLoggedIn ? 
+        !currentUser?.email ? 
           <div className='header__login'>
             <Link to='/signup' className='header__link header__link-signup'>Регистрация</Link>
             <Link to='/signin' className='header__link header__link-signin'>Войти</Link>
@@ -28,10 +35,10 @@ function Header() {
           <>
             <div 
               className={burgerMenuClassName}
-              onClick={() => setIsMenuOpened(true)}></div>
+              onClick={handlerBurgerMenu}></div>
             <Navigation 
               isOpen={isMenuOpened} 
-              onClose={() => setIsMenuOpened(false)} 
+              onClose={handlerBurgerMenu} 
               mainPage={mainPage} />
           </>          
       }
