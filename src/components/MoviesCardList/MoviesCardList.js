@@ -5,8 +5,8 @@ import { useState, useEffect } from 'react';
 
 function MoviesCardList({ 
   movies, 
-  setMovies, 
   savedMovies, 
+  setSavedMovies,
   moviesMessage,
   setInfoMessage,
   setIsInfoTooltipOpened }) {
@@ -39,8 +39,8 @@ function MoviesCardList({
     return <MoviesCard 
       key={movie.movieId} 
       movie={movie}
-      setMovies={setMovies}
       savedMovies={savedMovies}
+      setSavedMovies={setSavedMovies}
       setInfoMessage={setInfoMessage} 
       setIsInfoTooltipOpened={setIsInfoTooltipOpened} />
   });

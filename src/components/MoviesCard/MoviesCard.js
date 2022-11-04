@@ -5,9 +5,9 @@ import { addToSavedMovies, deleteFromSavedMovies } from '../../utils/MainApi';
 import { SAVED_MOVIE_ADDING_ERROR, SAVED_MOVIE_DELETING_ERROR } from '../../constants/constants';
 
 function MoviesCard({ 
-  movie, 
-  setMovies, 
+  movie,
   savedMovies,
+  setSavedMovies,
   setInfoMessage,
   setIsInfoTooltipOpened }) {
   const location = useLocation();
@@ -32,7 +32,8 @@ function MoviesCard({
   async function handleAddToSavedMovie() {
     try {
       if (movie.movieId) {
-        await addToSavedMovies(movie);
+        const addedMovie = await addToSavedMovies(movie);
+        setSavedMovies([...savedMovies, addedMovie]);
         setIsSaved(true);
       }
     } catch (err) {
@@ -42,13 +43,14 @@ function MoviesCard({
     }
   }
 
-  async function handleDeleteFromSavedMovie() {
+  async function handleDeleteFromSavedMovie(mongoId) {
     try {
-      if (movie._id) {
-        const deletedMovie = await deleteFromSavedMovies(movie._id);
+      if (mongoId) {
+        const deletedMovie = await deleteFromSavedMovies(mongoId);
         if (deletedMovie._id) {
           const newSavedMovies = savedMovies.filter(c => c._id !== deletedMovie._id);
-          setMovies(newSavedMovies);
+          setSavedMovies(newSavedMovies);
+          setIsSaved(false);
         }
       }
     } catch (err) {
@@ -60,9 +62,12 @@ function MoviesCard({
 
   function handleMovieClick() {
     if (savedMoviesPage) {
-      handleDeleteFromSavedMovie();
+      handleDeleteFromSavedMovie(movie._id);
     } else {
-      if (!isSaved) {
+      if (isSaved) {
+        const mongoId = savedMovies.find(item => item.movieId === movie.movieId);
+        handleDeleteFromSavedMovie(mongoId?._id);
+      } else {
         handleAddToSavedMovie();
       }
     }

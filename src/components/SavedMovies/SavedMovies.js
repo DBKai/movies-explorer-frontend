@@ -108,8 +108,8 @@ function SavedMovies({
           !isLoading && 
           <MoviesCardList 
             movies={receivedMovies}
-            setMovies={setSavedMovies}
             savedMovies={savedMovies} 
+            setSavedMovies={setSavedMovies}
             moviesMessage={moviesMessage}
             setInfoMessage={setInfoMessage} 
             setIsInfoTooltipOpened={setIsInfoTooltipOpened} />
