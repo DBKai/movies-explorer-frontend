@@ -27,7 +27,7 @@ function Header() {
         <img src={logo} alt='Логотип movies explorer' className='header__logo' />
       </Link>
       {
-        !currentUser?.email ? 
+        !currentUser.isLoggedIn ? 
           <div className='header__login'>
             <Link to='/signup' className='header__link header__link-signup'>Регистрация</Link>
             <Link to='/signin' className='header__link header__link-signin'>Войти</Link>

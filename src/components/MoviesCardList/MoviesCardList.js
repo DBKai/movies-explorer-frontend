@@ -9,7 +9,8 @@ function MoviesCardList({
   setSavedMovies,
   moviesMessage,
   setInfoMessage,
-  setIsInfoTooltipOpened }) {
+  setIsInfoTooltipOpened,
+  fullLogout }) {
   const location = useLocation();
   const savedMoviesPath = location.pathname === '/saved-movies';
   const moviesPath = location.pathname === '/movies';
@@ -42,7 +43,8 @@ function MoviesCardList({
       savedMovies={savedMovies}
       setSavedMovies={setSavedMovies}
       setInfoMessage={setInfoMessage} 
-      setIsInfoTooltipOpened={setIsInfoTooltipOpened} />
+      setIsInfoTooltipOpened={setIsInfoTooltipOpened}
+      fullLogout={fullLogout} />
   });
 
   useEffect(() => {

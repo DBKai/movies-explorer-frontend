@@ -16,7 +16,8 @@ function Profile({
   setCurrentUser, 
   setIsLoading, 
   setInfoMessage, 
-  setIsInfoTooltipOpened }) {
+  setIsInfoTooltipOpened,
+  fullLogout }) {
   const [isEditing, setIsEditing] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const { values, handleChange, setValues } = useFormAndValidation();
@@ -31,13 +32,7 @@ function Profile({
   }
 
   function handleOnSignOut() {
-    setCurrentUser({
-      isLoggedIn: false,
-      name: '',
-      email: ''
-    });
-    localStorage.clear();
-    navigate('/');
+    fullLogout();
   }
 
   async function handleUpdateUser(event) {
@@ -59,11 +54,15 @@ function Profile({
         setIsInfoTooltipOpened(true);
       }
     } catch (err) {
-      if (err.message === 400) {
+      if (err.message === '401') {
+        fullLogout();
+        return;
+      }
+      if (err.message === '400') {
         setErrorMessage(UPDATE_PROFILE_ERROR);
         return;
       }
-      if (err.message === 409) {
+      if (err.message === '409') {
         setErrorMessage(USER_EMAIL_EXISTS);
         return;
       }

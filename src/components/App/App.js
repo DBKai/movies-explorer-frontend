@@ -1,5 +1,5 @@
 import './App.css';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
@@ -24,10 +24,21 @@ function App() {
     name: '',
     email: ''
   });
+  const navigate = useNavigate();
 
   function closeInfoTooltip() {
     setIsInfoTooltipOpened(false);
     setInfoMessage('');
+  }
+
+  function fullLogout() {
+    localStorage.clear();
+    setCurrentUser({
+      isLoggedIn: false,
+      name: '',
+      email: ''
+    })
+    navigate('/');
   }
 
   async function getCurrentUserInfo() {
@@ -41,7 +52,11 @@ function App() {
           email: user.email
         });
       }
-    } catch {
+    } catch (err) {
+      if (err.message === '401') {
+        fullLogout();
+        return;
+      }
       setInfoMessage(REQUEST_USERDATA_ERROR);
       setIsInfoTooltipOpened(true);
     } finally {
@@ -82,19 +97,22 @@ function App() {
             <Route path='/movies' element={
               <Movies
                 setInfoMessage={setInfoMessage}
-                setIsInfoTooltipOpened={setIsInfoTooltipOpened} />
+                setIsInfoTooltipOpened={setIsInfoTooltipOpened}
+                fullLogout={fullLogout} />
             } />
             <Route path='/saved-movies' element={
               <SavedMovies 
                 setInfoMessage={setInfoMessage}
-                setIsInfoTooltipOpened={setIsInfoTooltipOpened} />
+                setIsInfoTooltipOpened={setIsInfoTooltipOpened}
+                fullLogout={fullLogout} />
             } />
             <Route path='/profile' element={
               <Profile 
                 setCurrentUser={setCurrentUser} 
                 setIsLoading={setIsLoading}
                 setInfoMessage={setInfoMessage}
-                setIsInfoTooltipOpened={setIsInfoTooltipOpened} />
+                setIsInfoTooltipOpened={setIsInfoTooltipOpened}
+                fullLogout={fullLogout} />
             } />
           </Route>
           <Route path='*' element={<NotFound />} />

@@ -14,7 +14,8 @@ import {
 
 function SavedMovies({ 
   setInfoMessage, 
-  setIsInfoTooltipOpened }) {
+  setIsInfoTooltipOpened,
+  fullLogout }) {
   const [savedMovies, setSavedMovies] = useState(null);
   const [receivedMovies, setReceivedMovies] = useState(null);
   const [formMessage, setFormMessage] = useState('');
@@ -73,7 +74,11 @@ function SavedMovies({
       const movies = await getSavedMovies();
       setReceivedMovies(movies);
       setSavedMovies(movies);
-    } catch {
+    } catch (err) {
+      if (err.message === '401') {
+        fullLogout();
+        return;
+      }
       setInfoMessage(REQUEST_DURING_ERROR);
       setIsInfoTooltipOpened(true);
     } finally {
@@ -112,7 +117,8 @@ function SavedMovies({
             setSavedMovies={setSavedMovies}
             moviesMessage={moviesMessage}
             setInfoMessage={setInfoMessage} 
-            setIsInfoTooltipOpened={setIsInfoTooltipOpened} />
+            setIsInfoTooltipOpened={setIsInfoTooltipOpened}
+            fullLogout={fullLogout} />
         }
       </main>
       <Footer />

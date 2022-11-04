@@ -9,7 +9,8 @@ function MoviesCard({
   savedMovies,
   setSavedMovies,
   setInfoMessage,
-  setIsInfoTooltipOpened }) {
+  setIsInfoTooltipOpened,
+  fullLogout }) {
   const location = useLocation();
   const {nameRU, duration, image} = movie;
   const savedMoviesPage = location.pathname === '/saved-movies';
@@ -37,7 +38,10 @@ function MoviesCard({
         setIsSaved(true);
       }
     } catch (err) {
-      console.log(err);
+      if (err.message === '401') {
+        fullLogout();
+        return;
+      }
       setInfoMessage(SAVED_MOVIE_ADDING_ERROR);
       setIsInfoTooltipOpened(true);
     }
@@ -54,7 +58,10 @@ function MoviesCard({
         }
       }
     } catch (err) {
-      console.log(err);
+      if (err.message === '401') {
+        fullLogout();
+        return;
+      }
       setInfoMessage(SAVED_MOVIE_DELETING_ERROR);
       setIsInfoTooltipOpened(true);
     }
