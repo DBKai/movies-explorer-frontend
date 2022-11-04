@@ -90,7 +90,7 @@ function SavedMovies({
   }, [isShortMovies]);
 
   useEffect(() => {
-    setReceivedMovies(savedMovies);
+    search();
   }, [savedMovies]);
 
   return (
