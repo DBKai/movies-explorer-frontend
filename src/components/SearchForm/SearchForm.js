@@ -1,26 +1,34 @@
-import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import './SearchForm.css';
+import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
-function SearchForm() {
-  function handleSubmit(event) {
-    event.preventDefault();
-  }
-
+function SearchForm({ 
+  searchText, 
+  isShortMovies, 
+  formMessage,
+  handleSubmit, 
+  handleChangeShorts, 
+  handleChangeSearchText }) {
   return (
     <section className='search'>
-      <form className='searchform' onSubmit={handleSubmit} noValidate>
+      <form className='form searchform' onSubmit={handleSubmit}>
         <div className='searchform__container'>
-          <input
-            type='text'
-            id='input-search'
-            name='search-field'
-            className='searchform__item'
-            placeholder='Фильм'/>
-          <button className='searchform__submit' type='submit'>Найти</button>
+          <div className='searchform__input'>
+            <input
+              className='searchform__item'
+              name='searchInput'
+              type='text'
+              placeholder='Фильм'
+              onChange={handleChangeSearchText}
+              value={searchText} />
+            <button className='searchform__submit' type='submit'>Найти</button>
+          </div>
+          <p className='searchform__message'>{formMessage}</p>
         </div>
-        <FilterCheckbox />
+        <FilterCheckbox 
+          isShortMovies={isShortMovies || false} 
+          handleChangeShorts={handleChangeShorts} />
       </form>
-    </section>    
+    </section>
   );
 }
 

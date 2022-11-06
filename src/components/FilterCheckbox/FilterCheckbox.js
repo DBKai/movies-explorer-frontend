@@ -1,17 +1,14 @@
 import './FilterCheckbox.css';
-import { useState } from 'react';
 
-function FilterCheckbox() {
-  const [isChecked, setIsChecked] = useState(false);
-
+function FilterCheckbox({ isShortMovies, handleChangeShorts }) {
   return (
     <label className="filtercheckbox">
       <input
-        onChange={() => {
-          setIsChecked(!isChecked);
-        }}
-        type="checkbox"
         className="invisible-filtercheckbox"
+        type="checkbox"
+        name="isShortMovies"
+        onChange={handleChangeShorts}
+        checked={isShortMovies}
       />
       Короткометражки
       <span className="visible-filtercheckbox" />    

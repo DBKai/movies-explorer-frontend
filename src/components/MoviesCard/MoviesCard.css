@@ -16,12 +16,15 @@
 }
 
 .movies__name {
-  width: 240px;
+  max-width: 240px;
   margin: 0;
   font-family: 'Inter';
   font-weight: 500;
   font-size: 15px;
   line-height: 18px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .movies__duration {
@@ -33,7 +36,11 @@
 }
 
 .movies__preview {
-  width: 100%;
+  width: 360px;
+  height: 200px;
+  display: block;
+  object-fit: cover;
+  object-position: center;
 }
 
 .movies__save {
@@ -77,6 +84,11 @@
   .movies__heading {
     padding: 18px;
   }
+
+  .movies__preview {
+    width: 342px;
+    height: 190px;
+  }
 }
 
 @media screen and (max-width: 400px) {
@@ -87,6 +99,11 @@
 
   .movies__heading {
     padding: 14px;
+  }
+
+  .movies__preview {
+    width: 300px;
+    height: 168px;
   }
 
   .movies__name {

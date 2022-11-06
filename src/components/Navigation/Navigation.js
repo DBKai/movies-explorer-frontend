@@ -1,19 +1,24 @@
 import './Navigation.css';
 import { Link, NavLink } from 'react-router-dom';
 
-function Navigation({isOpen, onClose, mainPage}) {
+function Navigation({ isOpen, onClose, mainPage }) {
     const activeNavLinkClassName = ({isActive}) => {
-      return `navigation__item${mainPage ? ' navigation__item-white' : ''}${isActive ? ' navigation__item_active' : ''}`;
+      return `navigation__item${mainPage ? ' navigation__item-white' 
+        : ''}${isActive ? ' navigation__item_active' : ''}`;
     };
     const activeMainNavLinkClassName = ({isActive}) => {
-      return `navigation__item${mainPage ? ' navigation__item-white' : ''}${isActive ? ' navigation__item_active' : ''} navigation__mobile-item`;
+      return `navigation__item${mainPage ? ' navigation__item-white' 
+        : ''}${isActive ? ' navigation__item_active' : ''} navigation__mobile-item`;
     };
     return (
     <>
       <div className={`navigation header__navigation${isOpen ? ' navigation_opened' : ''}`}>
         <div className='navigation__container'>
           <div className='navigation__link-container'>
-            <button className='navigation__menu-close' onClick={onClose}/>
+            <button 
+              className='navigation__menu-close' 
+              type='button'
+              onClick={onClose}/>
             <nav className='navigation__links'>
               <NavLink 
                 to='/' end
