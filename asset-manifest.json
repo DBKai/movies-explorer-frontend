@@ -1,25 +1,13 @@
 {
   "files": {
-    "main.css": "/static/css/main.12d34a8b.css",
-    "main.js": "/static/js/main.04e1f930.js",
+    "main.css": "/static/css/main.94263251.css",
+    "main.js": "/static/js/main.af9d51b0.js",
     "static/js/787.5fef94a4.chunk.js": "/static/js/787.5fef94a4.chunk.js",
     "static/media/Inter-Medium.woff?v=3.19": "/static/media/Inter-Medium.9053572c46aeb4b16caa.woff",
     "static/media/Inter-Regular.woff?v=3.19": "/static/media/Inter-Regular.8c206db99195777c6769.woff",
     "static/media/Inter-Medium.woff2?v=3.19": "/static/media/Inter-Medium.293fd13dbca5a3e450ef.woff2",
     "static/media/Inter-Regular.woff2?v=3.19": "/static/media/Inter-Regular.c8ba52b05a9ef10f4758.woff2",
-    "static/media/8.jpg": "/static/media/8.dfbf2e0dc287c92a3684.jpg",
-    "static/media/9.jpg": "/static/media/9.ec31ab3a0d66b47bfb9c.jpg",
-    "static/media/5.jpg": "/static/media/5.b819774df31050da30e0.jpg",
-    "static/media/6.jpg": "/static/media/6.7fec7524f0167dbca8ce.jpg",
-    "static/media/1.jpg": "/static/media/1.7dbd57ecf72576f0337a.jpg",
-    "static/media/4.jpg": "/static/media/4.45883b0a71ebf27b6d96.jpg",
-    "static/media/12.jpg": "/static/media/12.e46cb886336483661ed4.jpg",
-    "static/media/7.jpg": "/static/media/7.b0d4eb6c94ab3f568150.jpg",
     "static/media/student.jpg": "/static/media/student.55d85e8b715176b3e7a7.jpg",
-    "static/media/3.jpg": "/static/media/3.ec1280cd246352c9ea83.jpg",
-    "static/media/10.jpg": "/static/media/10.dad4e97df6babbaa9ff3.jpg",
-    "static/media/11.jpg": "/static/media/11.b1af728032633da6865c.jpg",
-    "static/media/2.jpg": "/static/media/2.dcd9d79fd2284afe3708.jpg",
     "static/media/landing-logo.svg": "/static/media/landing-logo.85fb5137cfb69a3ba319.svg",
     "static/media/logo.svg": "/static/media/logo.e9150ac94a7b47283cc3a8b6fcdce94a.svg",
     "index.html": "/index.html",
@@ -29,12 +17,12 @@
     "static/media/burger-menu-white.svg": "/static/media/burger-menu-white.1334a240bc3d0347347f.svg",
     "static/media/burger-menu.svg": "/static/media/burger-menu.cc4fc5cdb1a62917eccc.svg",
     "static/media/movie-added.svg": "/static/media/movie-added.009ab2eade12855876d9.svg",
-    "main.12d34a8b.css.map": "/static/css/main.12d34a8b.css.map",
-    "main.04e1f930.js.map": "/static/js/main.04e1f930.js.map",
+    "main.94263251.css.map": "/static/css/main.94263251.css.map",
+    "main.af9d51b0.js.map": "/static/js/main.af9d51b0.js.map",
     "787.5fef94a4.chunk.js.map": "/static/js/787.5fef94a4.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.12d34a8b.css",
-    "static/js/main.04e1f930.js"
+    "static/css/main.94263251.css",
+    "static/js/main.af9d51b0.js"
   ]
 }
