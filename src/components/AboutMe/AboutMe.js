@@ -10,7 +10,7 @@ function AboutMe() {
           <div className='aboutme__text-container'>
             <p className='aboutme__name'>Дмитрий</p>
             <p className='aboutme__info'>Фронтенд-разработчик, 32 года</p>
-            <p className='aboutme__description'>Я родился и живу в городе Сухой Лог, разрабатываю программы на стеке C# .NET Windows Forms. С 2021 решил поменять десктопные приложения на веб, начал учиться в Яндекс Практикуме. На фронтенде останавливаться не планирую, моя цель - fullstack developer.</p>
+            <p className='aboutme__description'>Перешел в сферу веб-разработки в 2022 году. До этого создавал приложения на стеке C# .NET WinForms. Веб-разработка привлекает тем, что с ее помощью можно более гибко формировать интерфейс и решать задачи UX.</p>
           </div>
           <a 
             className='aboutme__link' 
