@@ -4,9 +4,9 @@
 
 В данной части проекта реализован React и JS
 
-Домен: https://movie.dkay.ru/
+Домен: [https://dkay.ru/](https://dkay.ru/)
 
-IP-адрес: 51.250.24.234
+IP-адрес: 188.225.42.160
 
 Ссылка на макет https://disk.yandex.ru/d/oD38rFhZN6OZBw
 
